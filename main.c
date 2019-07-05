@@ -43,8 +43,6 @@ void sort_by_fname(record_list*);
 void sort_by_id(record_list*);
 void swap(node*, node*);
 
-
-
 int main (void) {
     char buffer[LINESIZE];
     char tmpbuffer[LINESIZE]; 
@@ -61,7 +59,6 @@ int main (void) {
     while(fgets(buffer, LINESIZE, stdin)){
         if (sscanf(buffer, "%s", tmpbuffer) == 1){
             if(parse_record(buffer, &rec)){
-                /*printf("%d %s %s %s\n", rec.fee,  rec.name.last, rec.name.first,rec.id);*/
                 list_insert(&reclist, &rec);
             }
         } else 
@@ -95,7 +92,6 @@ int main (void) {
     printf("  FEE    LAST   FIRST    ID\n");
     for (p = reclist; p != 0; p = p->next)
         print_record(&p->data);
-  
 
      /*empty and free list*/ 
     list_clear(&reclist);
@@ -124,12 +120,10 @@ void sort_by_fee(record_list *mlist){
     /* Check for empty list */
     if (mlist == NULL) 
         return; 
-  
     do
     { 
         swapped = 0; 
         m = *mlist; 
-  
         while (m->next != lptr) 
         { 
             if (m->data.fee < m->next->data.fee) 
@@ -152,7 +146,6 @@ void sort_by_lname(record_list *mlist){
     /* Check for empty list */
     if (mlist == NULL) 
         return; 
-  
     do
     { 
         swapped = 0; 
@@ -173,7 +166,6 @@ void sort_by_lname(record_list *mlist){
     while (swapped); 
 }
 
-
 void sort_by_fname(record_list *mlist){
     int swapped; 
     node *m; 
@@ -182,12 +174,10 @@ void sort_by_fname(record_list *mlist){
     /* Check for empty list */
     if (mlist == NULL) 
         return; 
-  
     do
     { 
         swapped = 0; 
         m = *mlist; 
-  
         while (m->next != lptr) 
         { 
             if ((strcmp(m->data.name.first, m->next->data.name.first)) > 0) 
@@ -211,12 +201,10 @@ void sort_by_id(record_list *mlist){
     /* Check for empty list */
     if (mlist == NULL) 
         return; 
-  
     do
     { 
         swapped = 0; 
         m = *mlist; 
-  
         while (m->next != lptr) 
         { 
             if ((strcmp(m->data.id, m->next->data.id)) > 0) 
@@ -239,35 +227,13 @@ void swap(node *a, node *b)
     b->data = temp; 
 } 
 
-
 int list_insert(record_list *mlist, const record *prec){ 
-  /*  node **tracer; */
     node *newnode = malloc(sizeof(node));
 
     if (newnode == 0)
       return 0;
   
     newnode->data = *prec;
-    #if 0
-    for(tracer = mlist; *tracer != 0; tracer = &(*tracer)->next){
-		if((*tracer)->data.fee < prec->fee)
-            break;
-         
-		if((*tracer)->data.fee == prec->fee){
-			if(strcmp((*tracer)->data.name.last, prec->name.last) > 0)
-				break;
-			else if(strcmp((*tracer)->data.name.last, prec->name.last) == 0){
-                if(strcmp((*tracer)->data.name.first, prec->name.first) > 0)
-                    break;
-                else if(strcmp((*tracer)->data.name.first, prec->name.first) == 0)
-                    if(strcmp((*tracer)->data.id, prec->id) > 0)
-                        break;
-			}	
-        }
-      
-    }
-    #endif
-
     newnode->next = *mlist;
     *mlist = newnode;
     return 1;  
@@ -283,9 +249,6 @@ int parse_record(const char *s, record *prec){
         return 0;
     if(!is_valid_id(prec->id))
         return 0;
-  
-    /*if(prec->fee < 0 || prec->fee > 100)
-        return 0;*/
 
     return 1;
 }
@@ -295,7 +258,6 @@ void print_record(const record *prec) {
     printf("$%.2f  %s,  %s  (%s)\n", prec->fee,  rec.name.last, rec.name.first, prec->id);
 }
 
-/*check that the id s[] starts with a/A followed by 8 digits*/
 int is_valid_id(const char s[]){
     char ch;
     int d;
@@ -312,4 +274,3 @@ int is_valid_id(const char s[]){
     }  
     return 0;
 }
-
