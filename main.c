@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include <math.h>
-#include <stdbool.h>
 
 #define LINESIZE  1024
 #define IDSIZE 10
@@ -49,7 +47,6 @@ int main (void) {
     record_list reclist;
     record rec;
     node *p;
-
 
     /*initialize record list*/
     list_init(&reclist);
@@ -238,7 +235,6 @@ int list_insert(record_list *mlist, const record *prec){
     *mlist = newnode;
     return 1;  
 }
-
 
 int parse_record(const char *s, record *prec){
     int r;
