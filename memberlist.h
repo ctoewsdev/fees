@@ -1,4 +1,3 @@
-
 #ifndef LIST_H
 #define LIST_H
 #include "member.h"
@@ -8,7 +7,6 @@ struct membernode{
     member data;
     membernode *next;
 };
-
 
 typedef membernode *member_list;
 void list_init(member_list*);

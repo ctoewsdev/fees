@@ -15,7 +15,6 @@ void list_clear(member_list *mlist){
     list_init(mlist);
 }
 
-
 int list_insert(member_list *mlist, const member *pmem){ 
     membernode *newnode = malloc(sizeof(membernode));
 

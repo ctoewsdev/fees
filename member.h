@@ -1,6 +1,6 @@
 #ifndef RECORD_H
 #define RECORD_H
-#define IDSIZE 6
+#define IDSIZE 7
 #define NAMESIZE 20
 
 typedef struct {
@@ -13,6 +13,5 @@ typedef struct {
     name name;
     double fee;
 } member;
-
 
 #endif
